@@ -3,21 +3,17 @@ apiVersion: data.jdcloud.com/v1beta
 kind: ClusterLogTrait
 metadata:
   labels:
-    integration: {{integrationName}}            #Integration name，用于索引采集配置，快速查找。此字段会被注入到所有的日志信息中，标识该日志属于哪个Integration
+    integration: asdasd        #Integration name，用于索引采集配置，快速查找。此字段会被注入到所有的日志信息中，标识该日志属于哪个Integration
   name: integration-demo-logtrait1              #采集配置名称，全局唯一
 spec:
   containers:                                   #待采集日志的容器列表及其配置详情
-  - name: {{yourContainerName}}                 #容器名称
+  - name: asadsasd             #容器名称
     logPath:                                    #日志路径：stdout或容器内文件全路径（emptyDir/hostPath/lvm）；
     - a.log
-    logType: {{yourLogType}}                    #日志类型：标识日志类型（此字段会被注入到所有的日志信息中），如 slow_sql、access等
-    params: {{your_params}}                     #可选参数：Container级别配置参数及宏命令
+    logType: slow_sql                    #日志类型：标识日志类型（此字段会被注入到所有的日志信息中），如 slow_sql、access等
   description: name                             #描述信息,自由填写
   labelSelector:                                #POD选择器（与nodeSelector互斥，labelSelector优先级高），只有被labelSelector命中的POD才会进行日志采集。注意，这里的label只可匹配pod上的label。deployment等controller上的label是不生效的。
-    {{labelKey}}: {{labelValue}}
-  nodeSelector:                                 #NODE选择器（与labelSelector互斥，labelSelector优先级高），只有被nodeSelector命中的Node才会进行日志采集。
-    {{labelKey}}: {{labelValue}}
+    aaa: bbb
   namespace: logs-system                        #写死，该配置由日志系统管理
   scope: cluster                                #写死，这是一个跨namespace的采集配置
   updateTime: 0                                 #写死
-  params: {{your_params}}                       #POD级别配置参数及宏命令
