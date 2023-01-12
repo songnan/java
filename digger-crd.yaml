@@ -22,13 +22,6 @@ spec:
         properties:
           spec:
             properties:
-              mysql-db-encoding:
-                enum:
-                - utf8
-                - swe7
-                - ascii
-                - cp932
-                type: string
               cluster-size:
                 default: 3
                 maximum: 7.0
@@ -42,28 +35,6 @@ spec:
                     type: string
                   RAM:
                     type: string
-                type: object
-              autoscaling:
-                properties:
-                  scale-out:
-                    maximum: 1.0
-                    minimum: 0.0
-                    type: number
-                  by:
-                    enum:
-                    - IO
-                    - CPU
-                    - RAM
-                    - Storage
-                    type: string
-                  scale-in:
-                    maximum: 1.0
-                    minimum: 0.0
-                    type: number
-                required:
-                - by
-                - scale-in
-                - scale-out
                 type: object
               mysql-version:
                 type: number
