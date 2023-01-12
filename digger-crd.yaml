@@ -1,0 +1,77 @@
+apiVersion: log.jdcloud.com/v1
+kind: DiggerLogConfigDefinition
+metadata:
+  name: diggers.log.jdcloud.com
+spec:
+  group: log.jdcloud.com
+  names:
+    categories:
+    - logtrait
+    - all
+    kind: DiggerLogConfigDefinition
+    plural: diggerlogconfigdefinitions
+    shortNames:
+    - digger
+    singular: diggerlogconfigdefinition
+  scope: Cluster
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: 各个产品线日志初始化采集配置
+        properties:
+          spec:
+            properties:
+              mysql-db-encoding:
+                enum:
+                - utf8
+                - swe7
+                - ascii
+                - cp932
+                type: string
+              cluster-size:
+                default: 3
+                maximum: 7.0
+                type: integer
+              resource-limits:
+                properties:
+                  CPU:
+                    minimum: 1.0
+                    type: integer
+                  Disk:
+                    type: string
+                  RAM:
+                    type: string
+                type: object
+              autoscaling:
+                properties:
+                  scale-out:
+                    maximum: 1.0
+                    minimum: 0.0
+                    type: number
+                  by:
+                    enum:
+                    - IO
+                    - CPU
+                    - RAM
+                    - Storage
+                    type: string
+                  scale-in:
+                    maximum: 1.0
+                    minimum: 0.0
+                    type: number
+                required:
+                - by
+                - scale-in
+                - scale-out
+                type: object
+              mysql-version:
+                type: number
+            required:
+            - autoscaling
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
