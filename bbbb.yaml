@@ -1,0 +1,20 @@
+apiVersion: log.jdcloud.com/v1
+kind: DiggerLogConfigDefinition
+metadata:
+  name: diggers.log.jdcloud.com
+spec:
+  group: log.jdcloud.com
+  names:
+    categories:
+    - logtrait
+    - all
+    kind: DiggerLogConfigDefinition
+    plural: diggerlogconfigdefinitions
+    shortNames:
+    - log
+    singular: diggerlogconfigdefinition
+  scope: Cluster
+  versions:
+  - name: v1
+    served: true
+    storage: true
