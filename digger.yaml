@@ -11,6 +11,10 @@ spec:
     kind: DiggerLogConfigDefinition
     plural: diggerlogconfigdefinitions
     shortNames:
-    - digger
+    - log
     singular: diggerlogconfigdefinition
   scope: Cluster
+  versions:
+  - name: v1
+    served: true
+    storage: true
